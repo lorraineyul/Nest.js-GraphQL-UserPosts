@@ -1,10 +1,17 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { UserService } from './user.service';
+import { SignupInput } from './input/user.signupinput';
+import { ErrorResponse } from './shared/errorResponse';
 
 @Resolver()
 export class UserResolver {
+  constructor(private userService: UserService) {}
 
-  @Query(() => String) 
-  async hello() {
-    return "hello";
+  @Mutation(() => [ErrorResponse], {nullable: true})
+  async signup(
+    @Args('signupInput') signupInput: SignupInput,
+  ): Promise<object[] | null> {
+    return this.userService.signup(signupInput);
   }
 }
+

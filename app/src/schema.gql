@@ -2,31 +2,34 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type ErrorResponse {
+  path: String!
+  message: String!
+}
+
 type Post {
   id: Int!
   body: String!
   userId: Int!
-  user: User!
-}
-
-type User {
-  id: Int!
-  username: String!
-  email: String!
-  password: String!
-  post: [Post!]
 }
 
 type Query {
-  hello: String!
   findAll: [Post!]!
   findOne(id: Int!): Post!
 }
 
 type Mutation {
+  signup(signupInput: SignupInput!): [ErrorResponse!]
   createPost(createPostInput: CreatePostInput!): Post!
   updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
   removePost(id: Int!): Post!
+}
+
+"""Signup Input"""
+input SignupInput {
+  username: String!
+  email: String!
+  password: String!
 }
 
 input CreatePostInput {
