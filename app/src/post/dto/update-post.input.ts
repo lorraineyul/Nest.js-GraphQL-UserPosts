@@ -6,5 +6,5 @@ export class UpdatePostInput {
   body: string;
 
   @Field(type => Int)
-  authorId: number;
+  userId: number;
 }

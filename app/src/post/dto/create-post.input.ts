@@ -6,5 +6,5 @@ export class CreatePostInput {
   body: string;
 
   @Field(type => Int)
-  authorId: number;
+  userId: number;
 }

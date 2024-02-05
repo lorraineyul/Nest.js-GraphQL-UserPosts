@@ -36,7 +36,7 @@ export class PostResolver {
 
   @Mutation(() => Post)
   updatePost(@Args('id', { type: () => Int }) id: number,
-              @Args('updateOwnerInput') updatePostInput: UpdatePostInput) {
+              @Args('updatePostInput') updatePostInput: UpdatePostInput) {
     return this.postService.update(id, updatePostInput);
   }
 
@@ -44,9 +44,5 @@ export class PostResolver {
   removePost(@Args('id', { type: () => Int }) id: number) {
     return this.postService.remove(id);
   }
-
-  // @ResolveField(() => Post)
-  // user(@Parent() post: Post): Promise<User> {
-  //   return this.postService.getUser(post.userId)
-  // }
+  
 }

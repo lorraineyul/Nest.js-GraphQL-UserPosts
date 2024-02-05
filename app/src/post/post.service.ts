@@ -11,7 +11,6 @@ import { UpdatePostInput } from './dto/update-post.input';
 export class PostService {
   constructor(
     @InjectRepository(Post) private postRepo: Repository<Post>,
-    // private userService: UserService,
   ) {}
 
   async findAll(): Promise<Post[]> {
@@ -44,7 +43,4 @@ export class PostService {
     return await this.postRepo.delete({ id });
   }
 
-  // getOwner(userId: number): Promise<User> {
-  //   return this.userService.findOne(userId);
-  // }
 }
