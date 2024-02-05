@@ -11,6 +11,7 @@ import { Post } from './post.entity';
 import { PostService } from './post.service';
 import { User } from 'src/user/user.entity';
 import { CreatePostInput } from './dto/create-post.input';
+import { UpdatePostInput } from './dto/update-post.input';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -31,6 +32,12 @@ export class PostResolver {
     @Args('createPostInput') createPostInput: CreatePostInput,
   ): Promise<Post> {
     return this.postService.create(createPostInput);
+  }
+
+  @Mutation(() => Post)
+  updatePost(@Args('id', { type: () => Int }) id: number,
+              @Args('updateOwnerInput') updatePostInput: UpdatePostInput) {
+    return this.postService.update(id, updatePostInput);
   }
 
   @Mutation(() => Post)
