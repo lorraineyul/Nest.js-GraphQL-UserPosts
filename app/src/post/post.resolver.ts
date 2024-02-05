@@ -34,7 +34,7 @@ export class PostResolver {
   }
 
   @Mutation(() => Post)
-  removePost(@Args('id', { type: () => Int }) id: number): Promise<string> {
+  removePost(@Args('id', { type: () => Int }) id: number) {
     return this.postService.remove(id);
   }
 

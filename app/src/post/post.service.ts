@@ -9,12 +9,12 @@ import { CreatePostInput } from './dto/create-post.input';
 @Injectable()
 export class PostService {
   constructor(
-    @InjectRepository(Post) private postRepo: Repository<Post>,
+    @InjectRepository(Post) private postRepo: Repository<Post>, 
     // private userService: UserService,
   ) {}
 
   async findAll(): Promise<Post[]> {
-    return this.postRepo.find();
+    return this.postRepo.find(); 
   }
 
   async findOne(postId: number): Promise<Post> {
@@ -22,22 +22,20 @@ export class PostService {
   }
 
   async create(createPostInput: CreatePostInput): Promise<Post> {
-    const newPost = this.postRepo.create(createPostInput);
+    const newPost = this.postRepo.create(createPostInput); 
 
-    return this.postRepo.save(newPost);
+    return this.postRepo.save(newPost); 
   }
 
-  async remove(id: number): Promise<string> {
-    const result = await this.postRepo.delete({ id });
-
-    if (result.affected === 1) {
-      return `Post with ID ${id} successfully deleted.`;
-    } else {
-      throw new Error(`Post with ID ${id} not found.`);
-    }
-  }
+  async remove(id: number) {
+    return (await this.postRepo.delete({ id }));
+    } 
+  
 
   // getOwner(userId: number): Promise<User> {
   //   return this.userService.findOne(userId);
   // }
+
+
+
 }
