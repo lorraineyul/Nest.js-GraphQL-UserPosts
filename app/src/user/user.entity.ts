@@ -21,7 +21,7 @@ export class User {
   @Field()
   password: string;
 
-  // @OneToMany(() => Post, post => post.user)
-  // @Field(type => [Post], {nullable: true})
-  // post?: Post[];
+  @OneToMany(() => Post, post => post.user)
+  @Field(type => [Post], {nullable: true})
+  post?: Post[];
 }
