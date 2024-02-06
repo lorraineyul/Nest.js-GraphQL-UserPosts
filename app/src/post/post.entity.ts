@@ -17,7 +17,7 @@ export class Post {
   @Field(type => Int)
   userId: number;
 
-  // @ManyToOne(() => User, user => user.post)
-  // @Field(type => User)
-  // user: User
+  @ManyToOne(() => User, user => user.post)
+  @Field(type => User)
+  user: User
 }
