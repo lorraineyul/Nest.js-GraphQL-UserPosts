@@ -7,8 +7,9 @@ import { ErrorResponse } from './shared/errorResponse';
 import { LoginInput } from './input/user.logininput';
 import { errorMessage } from './shared/errorMessage';
 import * as bcrypt from 'bcryptjs';
-import { Request } from 'express-serve-static-core';
+import { Request, Response } from 'express';
 import { MyContext } from 'src/types/myContext';
+import session from 'express-session';
 
 @Injectable()
 export class UserService {
@@ -61,6 +62,7 @@ export class UserService {
       console.log(err);
       return false;
     });
+    await ctx.res.clearCookie("userposts")
     return true;
   }
 }

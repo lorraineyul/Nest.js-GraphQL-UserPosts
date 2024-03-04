@@ -9,9 +9,7 @@ import { UpdatePostInput } from './dto/update-post.input';
 
 @Injectable()
 export class PostService {
-  constructor(
-    @InjectRepository(Post) private postRepo: Repository<Post>,
-  ) {}
+  constructor(@InjectRepository(Post) private postRepo: Repository<Post>) {}
 
   async findAll(): Promise<Post[]> {
     return this.postRepo.find();
@@ -40,7 +38,7 @@ export class PostService {
   }
 
   async remove(id: number) {
-    return await this.postRepo.delete({ id });
+    const removed = await this.postRepo.delete({id})
+    return !!removed;
   }
-
 }

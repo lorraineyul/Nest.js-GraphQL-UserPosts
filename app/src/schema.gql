@@ -2,15 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type ErrorResponse {
-  path: String!
-  message: String!
-}
-
 type Post {
   id: Int!
   body: String!
   userId: Int!
+  user: User!
+}
+
+type User {
+  id: Int!
+  username: String!
+  email: String!
+  password: String!
+  post: [Post!]
+}
+
+type ErrorResponse {
+  path: String!
+  message: String!
 }
 
 type Query {
@@ -24,7 +33,7 @@ type Mutation {
   logout: Boolean!
   createPost(createPostInput: CreatePostInput!): Post!
   updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
-  removePost(id: Int!): Post!
+  removePost(id: Int!): Boolean!
 }
 
 """Signup Input"""

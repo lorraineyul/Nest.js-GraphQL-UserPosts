@@ -8,7 +8,7 @@ import { MyContext } from 'src/types/myContext';
 @Resolver()
 export class UserResolver {
   constructor(private userService: UserService) {}
-
+ 
   @Mutation(() => [ErrorResponse], { nullable: true })
   async signup(
     @Args('signupInput') signupInput: SignupInput,
