@@ -3,10 +3,12 @@ import { AppModule } from './app.module';
 import * as session from 'express-session';
 import { SESSION_SECRET } from './constants';
 import { createClient } from 'redis';
-import * as connectRedis from 'connect-redis';
+import * as Store from 'connect-redis'
 
 
 async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
   const RedisStore = require("connect-redis").default
   
   const redisClient = createClient();
@@ -16,7 +18,6 @@ async function bootstrap() {
     client: redisClient,
   });
 
-  const app = await NestFactory.create(AppModule);
   app.use(
     session({
       store: redisStore,
@@ -24,7 +25,7 @@ async function bootstrap() {
       secret: SESSION_SECRET,
       cookie: {
         httpOnly: true,
-        secure: true,
+        secure: false,
       },
       resave: false,
       saveUninitialized: false,

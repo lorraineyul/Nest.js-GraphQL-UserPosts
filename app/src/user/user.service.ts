@@ -58,11 +58,11 @@ export class UserService {
   }
 
   async logout(ctx: MyContext) {
-    await ctx.req.session.destroy((err) => {
+    ctx.req.session.destroy((err) => {
       console.log(err);
       return false;
     });
-    await ctx.res.clearCookie("userposts")
+    ctx.res.clearCookie("userposts")
     return true;
   }
 }
